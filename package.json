@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-image-demo",
+  "version": "1.0.0",
+  "description": "Node.js image demo",
+  "author": "Sai the Shark <sai@example.com>",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
+
