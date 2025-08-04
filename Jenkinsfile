@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/YOUR_ORG/YOUR_REPO.git'
+                git branch: 'master', url: 'https://github.com/boddusaiprakash123/nodejs-application-deployment.git'
             }
         }
 
