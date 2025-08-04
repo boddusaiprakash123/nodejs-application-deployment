@@ -3,12 +3,12 @@ pipeline {
 
     environment {
         REMOTE_USER = "ec2-user"
-        REMOTE_HOST = "13.211.168.117"
+        REMOTE_HOST = "13.55.223.48"
         SSH_KEY_ID = "ec2-key"
     }
 
     triggers {
-        githubPush()  // Automatically trigger on GitHub push
+        githubPush()
     }
 
     stages {
@@ -22,14 +22,8 @@ pipeline {
             steps {
                 sshagent(credentials: [env.SSH_KEY_ID]) {
                     sh """
-                    ssh -o StrictHostKeyChecking=no ${env.REMOTE_USER}@${env.REMOTE_HOST} << 'EOF'
-                        sudo su - root -c '
-                            cd /root/node_deeployment &&
-                            git pull origin master &&
-                            npm install &&
-                            pm2 restart all || pm2 start app.js
-                        '
-                    EOF
+                    ssh -o StrictHostKeyChecking=no ${env.REMOTE_USER}@${env.REMOTE_HOST} \\
+                        "sudo su - root -c 'cd /root/node_deeployment && git pull origin master && npm install && pm2 restart all || pm2 start app.js'"
                     """
                 }
             }
