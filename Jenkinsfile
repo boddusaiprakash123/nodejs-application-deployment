@@ -23,7 +23,7 @@ pipeline {
                 sshagent(credentials: [env.SSH_KEY_ID]) {
                     sh """
                     ssh -o StrictHostKeyChecking=no ${env.REMOTE_USER}@${env.REMOTE_HOST} \\
-                        "sudo su - root -c 'cd /root/test/node_deeployment && git pull origin master && npm install && pm2 restart all || pm2 start app.js'"
+                        "sudo su - root -c 'cd /root/test/nodejs-application-deployment && git pull origin master && npm install && pm2 restart all || pm2 start app.js'"
                     """
                 }
             }
