@@ -14,24 +14,23 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                // Optional: Checkout code on Jenkins node (if needed)
-                git branch: 'master', url: 'https://github.com/your-org/your-repo.git'
+                git branch: 'master', url: 'https://github.com/YOUR_ORG/YOUR_REPO.git'
             }
         }
 
         stage('Deploy to EC2') {
             steps {
                 sshagent(credentials: [env.SSH_KEY_ID]) {
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST '
-                        sudo su - root -c "
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ${env.REMOTE_USER}@${env.REMOTE_HOST} << 'EOF'
+                        sudo su - root -c '
                             cd /root/node_deeployment &&
                             git pull origin master &&
                             npm install &&
                             pm2 restart all || pm2 start app.js
-                        "
-                    '
-                    '''
+                        '
+                    EOF
+                    """
                 }
             }
         }
