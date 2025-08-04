@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         REMOTE_USER = "ec2-user"
-        REMOTE_HOST = "13.55.223.48"
+        REMOTE_HOST = "13.211.168.117 "
         SSH_KEY_ID = "ec2-key"
     }
 
